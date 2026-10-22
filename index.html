@@ -1,120 +1,36 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="color-scheme" content="dark">
-  <meta name="theme-color" content="#101a22">
-  <title>Crypto transaction records, without the spreadsheet chaos | TW11</title>
-  <meta name="description" content="An independent guide to organizing crypto trades across exchanges, checking import quality, and deciding whether CoinTracking could fit your needs.">
-  <meta name="robots" content="index,follow">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Make sense of your crypto transaction history | TW11">
-  <meta property="og:description" content="A practical checklist for crypto records across exchanges and wallets. Independent guide with a disclosed affiliate link.">
-  <style>
-    :root{--bg:#101a22;--surface:#17252e;--border:#324651;--ink:#eef5ef;--muted:#b7c9c9;--lime:#c4f06d;--limeink:#1d3019;--teal:#76ded3;--max:1080px}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:var(--teal)}a:focus-visible,button:focus-visible{outline:3px solid var(--lime);outline-offset:3px}
-    .container{max-width:var(--max);padding:0 24px;margin:0 auto}
-    header{border-bottom:1px solid var(--border);background:#101a22e8}
-    .topbar{display:flex;justify-content:space-between;gap:24px;align-items:center;padding:17px 0}
-    .brand{font-weight:900;letter-spacing:.06em;font-size:20px;text-decoration:none;color:var(--ink)}
-    .brand span{color:var(--lime)}nav{display:flex;gap:21px;flex-wrap:wrap}nav a{color:var(--muted);font-size:14px;text-decoration:none}nav a:hover{color:var(--ink)}
-    .hero{padding:93px 0 80px;background:radial-gradient(ellipse at 80% 20%,#22574d 0%,transparent 44%),radial-gradient(ellipse at 10% 100%,#2c3f2d 0%,transparent 40%)}
-    .eyebrow{color:var(--lime);font-size:12px;text-transform:uppercase;letter-spacing:.18em;font-weight:800}
-    h1,h2,h3,p{margin-top:0}h1{font-size:clamp(43px,7.4vw,79px);line-height:1.06;letter-spacing:-.052em;max-width:940px;margin:20px 0 28px}
-    h1 em{font-style:normal;color:var(--lime)}.lead{font-size:clamp(18px,2.3vw,22px);max-width:730px;color:#d0dfdc;line-height:1.6}
-    .actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:32px 0 12px}
-    .btn{display:inline-block;padding:14px 23px;border-radius:9px;text-decoration:none;font-weight:800;transition:transform .15s ease,background .15s ease}
-    .btn:hover{transform:translateY(-2px)}.primary{background:var(--lime);color:var(--limeink)}.primary:hover{background:#d7ff91}.secondary{border:1px solid #92a5a5;color:var(--ink)}
-    .small{font-size:13px;color:var(--muted);max-width:700px}.small strong{color:var(--ink)}
-    .strip{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:#17262b;padding:18px 0}.strip .container{display:flex;flex-wrap:wrap;gap:20px 35px;justify-content:space-between;font-size:14px;color:#d0dcda}
-    .strip strong{color:var(--lime)}main section.content{padding:81px 0;border-bottom:1px solid var(--border)}h2{font-size:clamp(30px,4.2vw,45px);line-height:1.18;letter-spacing:-.03em;margin-bottom:17px}
-    .intro{color:var(--muted);max-width:710px;margin-bottom:29px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
-    .card{background:var(--surface);padding:27px;border-radius:13px;border:1px solid var(--border)}.card .num{font-size:12px;font-weight:800;color:var(--lime);letter-spacing:.14em}.card h3{font-size:20px;line-height:1.25;margin:16px 0 10px}.card p{color:var(--muted);font-size:15px;margin:0}
-    .two{display:grid;grid-template-columns:1.15fr 1fr;gap:45px;align-items:start}.checklist{list-style:none;padding:0;margin:0}.checklist li{padding:12px 0 12px 33px;border-bottom:1px solid var(--border);position:relative}.checklist li::before{content:"✓";position:absolute;left:0;color:var(--lime);font-weight:900}.muted{color:var(--muted)}
-    .panel{border-radius:14px;background:#203831;border:1px solid #4b7768;padding:30px}.panel h3{font-size:24px}.panel p{color:#d4e3dc}.pill{display:inline-block;border-radius:999px;border:1px solid #659b77;padding:5px 12px;color:var(--lime);font-size:12px;font-weight:800}
-    .callout{background:#1c2931;border-left:4px solid var(--lime);padding:20px 25px;margin:23px 0;border-radius:0 10px 10px 0}
-    details{border-bottom:1px solid var(--border);padding:21px 0}summary{cursor:pointer;font-weight:700}details p{color:var(--muted);margin:15px 0 0;max-width:780px}
-    footer{padding:38px 0 54px;color:var(--muted);font-size:14px}footer .container{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px}
-    footer a{color:var(--muted)}.source-list{padding-left:20px;color:var(--muted);font-size:14px}
-    @media(max-width:780px){.hero{padding:64px 0}.cards,.two{grid-template-columns:1fr}.topbar{align-items:flex-start;flex-direction:column;gap:8px}.strip .container{justify-content:flex-start}main section.content{padding:57px 0}}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
-  </style>
-</head>
-<body>
-<header><div class="container topbar">
-  <a class="brand" href="#top" aria-label="The Wave Whisperers home">TW<span>11</span><span style="color:#86a2a0;font-weight:500"> / The Wave Whisperers</span></a>
-  <nav aria-label="Primary navigation"><a href="#steps">The checklist</a><a href="#tool">The tool</a><a href="#faq">Questions</a><a href="#disclosure">Disclosure</a></nav>
-</div></header>
-<main id="top">
-  <section class="hero"><div class="container">
-    <div class="eyebrow">Independent guide · Crypto records &amp; reporting</div>
-    <h1>Five exchanges.<br>Too many trades.<br><em>One clearer picture.</em></h1>
-    <p class="lead">Crypto records get messy when trades, transfers and fees live in different places. Here is a practical way to bring them together — and decide whether a transaction-tracking tool is worth paying for.</p>
-    <div class="actions">
-      <a class="btn primary" href="https://cointracking.info?ref=L848699" target="_blank" rel="sponsored noopener noreferrer">Explore CoinTracking <span aria-hidden="true">↗</span></a>
-      <a class="btn secondary" href="#steps">Read the 3-step checklist</a>
-    </div>
-    <p class="small"><strong>Affiliate disclosure:</strong> This is an affiliate link. TW11 may earn a commission if you purchase a plan; you may receive a referral discount. This guide is independent and is not an official CoinTracking website.</p>
-  </div></section>
-  <div class="strip"><div class="container"><div><strong>01</strong> Gather your history</div><div><strong>02</strong> Check balances &amp; fees</div><div><strong>03</strong> Choose the right tool</div></div></div>
-  <section class="content" id="steps"><div class="container">
-    <div class="eyebrow">Start here</div><h2>Before buying software, fix the inputs.</h2>
-    <p class="intro">A beautifully formatted report is not much use if the underlying transaction history is incomplete. These are the three steps that matter first.</p>
-    <div class="cards">
-      <article class="card"><div class="num">STEP 01</div><h3>Collect everything</h3><p>Export records from each exchange. Include deposits, withdrawals, swaps, trading fees, staking activity and wallet-to-wallet transfers where applicable.</p></article>
-      <article class="card"><div class="num">STEP 02</div><h3>Reconcile the history</h3><p>Check duplicates, missing transfers, unmatched deposits, fees and opening balances. Automated imports need review; they are not a guarantee of accuracy.</p></article>
-      <article class="card"><div class="num">STEP 03</div><h3>Test before upgrading</h3><p>Confirm that your exchanges, transaction count, reporting country and required reports are actually supported. Compare the current plans directly.</p></article>
-    </div>
-  </div></section>
-  <section class="content" id="tool"><div class="container two">
-    <div><div class="eyebrow">One option worth evaluating</div><h2>Where CoinTracking can fit</h2>
-      <p class="muted">CoinTracking offers transaction imports, portfolio reporting and tax reports. Its published material lists support for 400+ exchange, wallet and blockchain import options; capabilities depend on the plan and on specific integrations.</p>
-      <ul class="checklist">
-        <li>Multiple exchange and wallet histories in one place</li>
-        <li>API or CSV import methods, depending on the source and plan</li>
-        <li>Portfolio and transaction reports to help review activity</li>
-        <li>Paid tiers for tax reporting and higher usage requirements</li>
-      </ul>
-      <div class="callout"><strong>A reason not to buy:</strong> If you hold crypto in one place and only need a simple transaction list, a spreadsheet or your exchange's own export may be enough. No software can replace checking source data.</div>
-    </div>
-    <aside class="panel">
-      <span class="pill">Referral offer</span>
-      <h3 style="margin-top:18px">10% off account upgrades</h3>
-      <p>CoinTracking states that new users following a referral link receive a 10% discount on upgrades. Terms, billing and plan features are controlled by CoinTracking. Check the final price before payment.</p>
-      <a class="btn primary" href="https://cointracking.info?ref=L848699" target="_blank" rel="sponsored noopener noreferrer">View the offer <span aria-hidden="true">↗</span></a>
-      <p class="small" style="margin-top:16px">Independent TW11 referral. We may receive commission on qualifying purchases. No guarantee of savings if the offer changes.</p>
-      <p style="margin-bottom:0;font-size:14px"><a href="https://cointracking.info/pricing" target="_blank" rel="noopener noreferrer">Check current pricing and limits ↗</a></p>
-    </aside>
-  </div></section>
-  <section class="content" id="fit"><div class="container">
-    <div class="eyebrow">The buying decision</div><h2>Is it right for you?</h2>
-    <div class="cards">
-      <article class="card"><div class="num">MAY BE USEFUL</div><h3>Active across platforms</h3><p>You have repeated trades, transfers or income activity spread across exchanges and wallets, and want to reconcile a fuller history.</p></article>
-      <article class="card"><div class="num">CHECK CAREFULLY</div><h3>Tax filing needs</h3><p>Confirm your country, tax year, cost-basis rules and export requirements with the official documentation and your adviser.</p></article>
-      <article class="card"><div class="num">MAY NOT BE NEEDED</div><h3>Simple buy-and-hold</h3><p>Only a few purchases, one wallet and an adequate exchange report? Try your existing records before committing to a subscription.</p></article>
-    </div>
-  </div></section>
-  <section class="content" id="faq"><div class="container">
-    <div class="eyebrow">Common questions</div><h2>Know this before clicking.</h2>
-    <details><summary>Is CoinTracking free?</summary><p>It advertises a free option and a trial, but reporting, imports and transaction limits depend on the current plan and trial stage. The pricing page is the best source of current terms.</p></details>
-    <details><summary>Is CoinTracking a tax adviser?</summary><p>No. Software can help organize data and produce reports, but it cannot certify that your records are complete or replace professional tax advice for your jurisdiction.</p></details>
-    <details><summary>How does TW11 earn money?</summary><p>TW11 may receive a referral commission when a visitor follows its disclosed link and completes a qualifying purchase. The purchase takes place directly with CoinTracking, not TW11.</p></details>
-    <details><summary>Does TW11 access my wallets or transaction data?</summary><p>No. This website has no account login, form, tracking script or wallet connection. If you follow the affiliate link, CoinTracking operates its own site, privacy notice and referral attribution.</p></details>
-    <details><summary>Was this tool independently tested?</summary><p>This guide is based on publicly available product information and general reconciliation principles. TW11 does not claim to have independently tested the platform's accuracy, integration performance or support.</p></details>
-  </div></section>
-  <section class="content" id="disclosure"><div class="container">
-    <div class="eyebrow">Transparency</div><h2>About this guide</h2>
-    <p class="intro">The Wave Whisperers (TW11) publishes independent educational material about practical financial and crypto tools. This page is not sponsored content commissioned by CoinTracking, does not imply endorsement by CoinTracking and does not constitute investment, tax or legal advice.</p>
-    <p><strong>Affiliate and privacy notice.</strong> Some links are affiliate links. TW11 may receive compensation when you purchase through them. There are no third-party analytics scripts, cookies set by this TW11 page or sign-up forms on this page. The destination site may use referral cookies subject to its own privacy terms. We do not collect visitors' wallet data or personal transaction information here.</p>
-    <p class="muted">Product details may change. Sources checked on 21 October 2026:</p>
-    <ul class="source-list"><li><a href="https://cointracking.info/pricing" target="_blank" rel="noopener noreferrer">CoinTracking — pricing and plan limitations</a></li>
-      <li><a href="https://cointracking.info/imports/" target="_blank" rel="noopener noreferrer">CoinTracking — import options</a></li>
-      <li><a href="https://cointracking.freshdesk.com/en/support/solutions/articles/29000049963-cointracking-affiliate-program" target="_blank" rel="noopener noreferrer">CoinTracking — affiliate program terms and referral discount</a></li>
-      <li><a href="https://cointracking.info/terms-of-service" target="_blank" rel="noopener noreferrer">CoinTracking — terms of service</a></li></ul>
-    
-  </div></section>
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="TW11 is an independent cryptocurrency engineering and opportunity research project focused on verified economics, risk controls and responsible automation.">
+<meta name="theme-color" content="#0d1524"><title>TW11 | Cryptocurrency Engineering & Opportunity Intelligence</title>
+<style>
+:root{color-scheme:dark;--bg:#0d1524;--card:#16243a;--line:#2c3c51;--txt:#f0f4fa;--muted:#a9b9cd;--accent:#74c6da}*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at top right,#1b3e50 0,transparent 46%),var(--bg);color:var(--txt);font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--accent)}.shell{max-width:1140px;margin:0 auto;padding:28px 26px}
+header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:26px}
+.logo{font-weight:850;font-size:24px;letter-spacing:.09em}.logo span{color:var(--accent)}header small{color:var(--muted)}
+main{padding:80px 0 40px}.eyebrow{color:var(--accent);text-transform:uppercase;letter-spacing:.2em;font-size:12px;font-weight:800}
+h1{font-size:clamp(2.6rem,6vw,5.5rem);line-height:1.07;letter-spacing:-.05em;max-width:900px;margin:18px 0 25px}h1 em{font-style:normal;color:var(--accent)}
+.lead{color:var(--muted);font-size:1.2rem;max-width:770px}.status{display:inline-flex;align-items:center;gap:10px;margin:18px 0 60px;padding:10px 15px;border:1px solid var(--line);border-radius:100px;color:#c3d6e3;font-size:13px}
+.dot{height:8px;width:8px;border-radius:50%;background:#e4b966}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px}.card h2{font-size:1.07rem;margin:0 0 10px}.card p{font-size:.96rem;margin:0;color:var(--muted)}
+.section{padding:55px 0 15px}.section h2{font-size:1.7rem;margin:0 0 12px;letter-spacing:-.02em}.section p{color:var(--muted);max-width:820px}
+.rules{border-left:3px solid var(--accent);padding:3px 20px;margin:30px 0 65px;color:var(--muted)}footer{color:#8497ad;border-top:1px solid var(--line);padding:25px 0;font-size:13px}
+@media(max-width:780px){.grid{grid-template-columns:1fr}main{padding-top:45px}header{align-items:flex-start;gap:16px;flex-direction:column}.shell{padding:22px 20px}}
+</style></head><body><div class="shell">
+<header><div class="logo">TW<span>11</span></div><small>The Wave Whisperers · Independent research</small></header>
+<main><div class="eyebrow">Cryptocurrency · Software engineering · Economic analysis</div>
+<h1>Find opportunities.<br><em>Verify the economics.</em></h1>
+<p class="lead">TW11 evaluates cryptocurrency-related earning opportunities through technical analysis, risk controls and responsible automation. The objective is evidence-based profitability, not hypothetical returns.</p>
+<div class="status"><span class="dot"></span> Research and testing stage · No verified earnings reported</div>
+<div class="grid">
+<article class="card"><h2>Development bounties</h2><p>Identifying potentially funded open-source tasks, checking reward evidence and assessing implementation requirements before any submission.</p></article>
+<article class="card"><h2>Mining economics</h2><p>Measuring revenue against energy, hardware wear, pool fees and uptime. No rented hardware or upfront investment.</p></article>
+<article class="card"><h2>Asset recovery</h2><p>Evaluating trusted assets in wallets under the owner's control. Recovery is existing value, not new income.</p></article>
+<article class="card"><h2>Permitted rewards</h2><p>Reviewing programmes only where participation is allowed by their official terms, with no deposits or activity-limit circumvention.</p></article>
+<article class="card"><h2>Network safety</h2><p>Checking cryptocurrency, blockchain network and destination memo requirements prior to any independently approved payout.</p></article>
+<article class="card"><h2>Verification and testing</h2><p>Building reproducible implementations and unit tests. A discovered opportunity is not represented as payment until funds are received.</p></article>
+</div>
+<section class="section"><h2>Operating principles</h2><p>The platform's automated components conduct read-only research and validation. Any external work, agreements, wallet activity or financial transfers require separate authorization and verification.</p>
+<div class="rules">No custody of private keys. No cryptocurrency mining on shared code-hosting infrastructure. No unsolicited automated promotions. No guaranteed earnings or investment returns.</div></section>
 </main>
-<footer><div class="container"><div><strong style="color:var(--ink)">TW11 — The Wave Whisperers</strong><div>Independent research. Clear limitations. No hype.</div></div><div>© 2026 TW11 · <a href="#disclosure">Affiliate disclosure &amp; privacy</a> · <a href="#top">Back to top ↑</a></div></div></footer>
-</body>
-</html>
+<footer>TW11 / The Wave Whisperers · Technical research only. This website does not offer investment advice or request deposits.</footer>
+</div></body></html>
